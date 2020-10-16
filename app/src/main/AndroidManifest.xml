@@ -9,7 +9,9 @@
         android:roundIcon="@drawable/pet"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FavoritosActivity"></activity>
+        <activity android:name=".ContactoActivity"></activity>
+        <activity android:name=".AcercaActivity" />
+        <activity android:name=".FavoritosActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

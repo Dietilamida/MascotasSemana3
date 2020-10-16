@@ -1,4 +1,4 @@
-package com.example.mascotasapp;
+package com.example.mascotasapp.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mascotasapp.pojo.Mascota;
+import com.example.mascotasapp.R;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.mascotasapp;
+package com.example.mascotasapp.pojo;
 
 public class Mascota {
     String nombre;
