@@ -17,12 +17,15 @@ import com.example.mascotasapp.pojo.Mascota;
 import java.util.ArrayList;
 import java.util.List;
 
+import presentador.IRecyclerViewFragmentPresenter;
+import presentador.RecyclerViewFragmentPresenter;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FragmentRecyclerView#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentRecyclerView extends Fragment {
+public class FragmentRecyclerView extends Fragment implements IRecyclerViewFragmentView {
 
     private List<Mascota> mascotas;
 
@@ -34,6 +37,8 @@ public class FragmentRecyclerView extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView rvMascotas;
+    private IRecyclerViewFragmentPresenter presenter;
 
     public FragmentRecyclerView() {
         // Required empty public constructor
@@ -76,22 +81,32 @@ public class FragmentRecyclerView extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_recyclerview, container, false);
 
-        inicializarListaMascotas();
-        RecyclerView rvMascotas = v.findViewById(R.id.rvMascotas);
-        rvMascotas.setAdapter(new MascotasAdapter(mascotas));
 
+        rvMascotas = v.findViewById(R.id.rvMascotas);
+        presenter =new RecyclerViewFragmentPresenter(this, getContext());
+        presenter.mostrarMascotasRV();
+        return v;
+    }
+
+
+    @Override
+    public void generarLinearLayoutVertical() {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rvMascotas.setLayoutManager(llm);
 
-        return v;
     }
-    public void inicializarListaMascotas(){
-        mascotas =new ArrayList<Mascota>();
-        mascotas.add(new Mascota("Katia", R.mipmap.perrito,5));
-        mascotas.add(new Mascota("Baba", R.mipmap.perrito,4));
-        mascotas.add(new Mascota("Arkady",R.mipmap.perrito,6));
-        mascotas.add(new Mascota("Gretel", R.mipmap.perrito,4));
-        mascotas.add(new Mascota("Hanna", R.mipmap.perrito,3));
-        mascotas.add(new Mascota("Kyoshi",R.mipmap.perrito,6));
-}}
+
+    @Override
+    public void inicializarAdaptadorRV(MascotasAdapter adaptador) {
+        rvMascotas.setAdapter(adaptador);
+
+
+    }
+
+    @Override
+    public MascotasAdapter crearAdaptador(ArrayList<Mascota> mascotas) {
+        MascotasAdapter adaptador = new MascotasAdapter(mascotas);
+        return adaptador;
+    }
+}

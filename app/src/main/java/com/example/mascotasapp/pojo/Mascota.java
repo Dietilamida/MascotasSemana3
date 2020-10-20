@@ -7,6 +7,11 @@ public class Mascota {
         return foto;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    int id;
     int foto;
     int numlikes;
 
@@ -18,7 +23,8 @@ public class Mascota {
         return numlikes;
     }
 
-    public Mascota (String nombre, int foto, int numlikes){
+    public Mascota (int id, String nombre, int foto, int numlikes){
+        this.id=id;
         this.nombre=nombre;
         this.foto=foto;
         this.numlikes=numlikes;

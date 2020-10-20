@@ -14,6 +14,8 @@ import com.example.mascotasapp.pojo.Mascota;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.BaseDatos;
+
 public class FavoritosActivity extends AppCompatActivity {
 
     private List<Mascota> mascotas;
@@ -45,13 +47,7 @@ public class FavoritosActivity extends AppCompatActivity {
         rvMascotas.setLayoutManager(llm);
     }
     public void inicializarListaMascotas(){
-        mascotas =new ArrayList<Mascota>();
-        mascotas.add(new Mascota("Kyoshi",R.mipmap.perrito,6));
-        mascotas.add(new Mascota("Arkady",R.mipmap.perrito,6));
-        mascotas.add(new Mascota("Katia", R.mipmap.perrito,5));
-        mascotas.add(new Mascota("Baba", R.mipmap.perrito,4));
-        mascotas.add(new Mascota("Gretel", R.mipmap.perrito,4));
-
-
+        BaseDatos db = new BaseDatos(this);
+        mascotas = db.obtenerFavoritos();
     }
 }
